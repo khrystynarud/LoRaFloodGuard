@@ -1,6 +1,6 @@
 body {
   display: grid;
-  grid-template-columns: 80px auto auto auto;
+  grid-template-columns: auto auto auto auto;
   grid-template-rows: auto auto auto min-content;
   margin: 0px;
   padding: 0px;
@@ -8,19 +8,12 @@ body {
   height: 100vh;
   overflow: hidden;
 }
-.left-container {
-  grid-row: 1/5;
-  grid-column: 1/2;
-  height: 100%;
-  width: 100%;
-  background-color: blue;
-  z-index: 3;
-}
+
 .bottom-container {
   background-color: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(5px);
   grid-row: 4/5;
-  grid-column: 2/5;
+  grid-column: 1/5;
   height: 100%;
   width: 100%;
   z-index: 2;
@@ -29,6 +22,14 @@ body {
   overflow-x: auto;
   overflow-y: hidden;
 }
+.map-container {
+  /* height: 500px; */
+  grid-row: 1/5;
+  grid-column: 1/5;
+  height: 100%;
+  z-index: 1;
+}
+
 .vamo-container {
   background-color: rgb(220, 220, 220);
   border-style: solid;
@@ -39,12 +40,13 @@ body {
   width: auto;
   padding: 15px;
   margin: 15px;
-  min-height: 200px;
+  min-height: 100px;
   min-width: 120px;
   border-radius: 10px;
 }
 .vamo-container:hover {
-  border-color: blue;
+  /* border-color: blue; */
+  background-color: rgb(245, 245, 245);
 }
 .vamo-container-text {
   padding: 0px;
@@ -69,12 +71,6 @@ body {
   display: grid;
   justify-content: center;
   align-items: center;
-  /* width: 20px;
-  height: 20px;
-  border-radius: 10px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: auto; */
 }
 .vamo-container-waterlvl {
   width: 20px;
@@ -88,11 +84,4 @@ body {
   width: 25px;
   height: 25px;
   border-radius: 100%;
-}
-.map-container {
-  /* height: 500px; */
-  grid-row: 1/5;
-  grid-column: 2/5;
-  height: 100%;
-  z-index: 1;
 }

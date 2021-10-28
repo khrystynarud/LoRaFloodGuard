@@ -11,7 +11,6 @@ function getData() {
       updateHTML("no-content");
       return;
     }
-
     const data = await response.json();
     updateHTML(data);
   }, 1000);
@@ -26,6 +25,7 @@ async function updateHTML(data) {
     default:
       //do something with the data
       showData(data);
+      //send something back?
       // let obj = {
       //   name: "daten lol",
       // };
@@ -34,22 +34,7 @@ async function updateHTML(data) {
   }
 }
 
-/*
-1. Array erstellen
-2. Alle objekte in Array einfügen
-
-3. object id = array
-*/
-
 function showData(data) {
-  // console.log(data);
-  // for (i in data) {
-  //   let id = data[i].id;
-  //   dataArray[id] = data[i];
-  // }
-  // console.log(dataArray);
-  // console.log(dataArray[0]);
-
   for (let i in data) {
     let el = document.createElement("div");
     let elName = document.createElement("a");
@@ -71,46 +56,29 @@ function showData(data) {
     el.appendChild(elWaterLvl);
     el.appendChild(elWaterLvlStateContainer);
 
-    // console.log(data.length);
     if (textNodeContainer.children.length < data.length) {
       textNodeContainer.appendChild(el);
     } else if (textNodeContainer.children.length > data.length) {
       textNodeContainer.removeChild(el);
     } else {
-      // textNodeContainer.children[i].innerHTML = data[i].waterLevel.toString();
+      //update the text stuff
       textNodeContainer.children[i].children[0].innerHTML =
         "Wamo " + (Number(i) + 1);
+      textNodeContainer.children[i].children[0].addEventListener(
+        "click",
+        () => {
+          goToVamo(i);
+        }
+      );
       textNodeContainer.children[i].children[1].innerHTML =
         "water lvl: " + data[i].waterLevel.toString();
-      // textNodeContainer.children[i].children[2].style.backroundColor =
-      //   data[i].waterLevelState.toString();
-      // console.log(data[i].waterLevelState.toString());
-      // console.log(textNodeContainer.children[i].children[2]);
-      // textNodeContainer.children[i].children[0].innerHTML =
-      // "vamo: " + data[i].waterLevel.toString();
-      // console.log(textNodeContainer.children.length);
     }
-    // for (let i = 0; i < textNodeContainer.children.length; i++) {
-    //   console.log(textNodeContainer.children[i]);
-    // }
   }
-  // } else {
-  // document.body.replaceChild(textArray[i], textArray[i]);
-  // } else {
-  // console.log(textArray[i].innerHTML);
-  // }
 }
-// console.log(textArray);
 
-// for (let i = 0; i < dataArray.length; i++) {
-
-// document.body.appendChild(textArray[i]);
-// textArray[i].innerHTML = data[i].waterLevel.toString();
-
-// el.attributes.id = data[i].id;
-// el.innerHTML = dataArray[i].waterLevel.toString();
-// console.log(data[i].waterLevel.toString());
-// }
+function goToVamo(id) {
+  //the map routes to the vamo with the following id
+}
 
 async function sendBack(json) {
   //https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
