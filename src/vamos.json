@@ -1,7 +1,20 @@
-{
-  "0": { "id": 0, "warningLevel": 0 },
-  "1": { "id": 1, "warningLevel": 0 },
-  "2": { "id": 2, "warningLevel": 0 },
-  "3": { "id": 3, "warningLevel": 0 },
-  "4": { "id": 4, "warningLevel": 0 }
-}
+[
+  {
+    "rtkStatus": "00",
+    "StationId": "0001",
+    "waterLevel": "137.282",
+    "waterLevelState": "yellow"
+  },
+  {
+    "rtkStatus": "00",
+    "StationId": "0001",
+    "waterLevel": "137.282",
+    "waterLevelState": "yellow"
+  },
+  {
+    "rtkStatus": "00",
+    "StationId": "0001",
+    "waterLevel": "137.282",
+    "waterLevelState": "yellow"
+  }
+]

@@ -4,11 +4,7 @@ body {
   padding: 0px;
 }
 
-#mapCanvas {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  max-width: 100%;
+.my-map {
   height: 500px;
   grid-row: 2/3;
   grid-column: 1/2;

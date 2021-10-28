@@ -25,7 +25,11 @@ function getDataFromVamo() {
 
 function getDataFromHTML(data) {
   //print the data that was received by the http-server
+
   console.log(data);
+  // setTimeout(() => {
+  //   fs.writeFileSync(pathToFile, JSON.stringify(test));
+  // }, 10000);
 }
 
 //get the
