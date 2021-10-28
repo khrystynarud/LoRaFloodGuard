@@ -1,4 +1,3 @@
-const headline1 = document.getElementById("headline1");
 let dataArray = [];
 let textArray = [];
 let textNodeContainer = document.getElementById("textNodeContainer");
@@ -23,7 +22,6 @@ async function updateHTML(data) {
   switch (data) {
     case "no-content":
       //data is empty
-      headline1.innerHTML = data;
       break;
     default:
       //do something with the data
@@ -53,15 +51,43 @@ function showData(data) {
   // console.log(dataArray[0]);
 
   for (let i in data) {
-    let el = document.createElement("p");
-    el.innerHTML = "no vamo";
+    let el = document.createElement("div");
+    let elName = document.createElement("a");
+    let elWaterLvl = document.createElement("p");
+    let elWaterLvlStateContainer = document.createElement("div");
+    let elWaterLvlState = document.createElement("div");
+
+    elName.innerHTML = "no vamo";
+    elWaterLvl.innerHTML = "water lvl:";
+
+    el.classList.add("vamo-container");
+    elName.classList.add("vamo-container-headline");
+    elWaterLvl.classList.add("vamo-container-text");
+    elWaterLvlStateContainer.classList.add("vamo-container-waterlvl-container");
+    elWaterLvlState.classList.add("vamo-container-waterlvl");
+
+    elWaterLvlStateContainer.appendChild(elWaterLvlState);
+    el.appendChild(elName);
+    el.appendChild(elWaterLvl);
+    el.appendChild(elWaterLvlStateContainer);
+
     // console.log(data.length);
     if (textNodeContainer.children.length < data.length) {
       textNodeContainer.appendChild(el);
     } else if (textNodeContainer.children.length > data.length) {
       textNodeContainer.removeChild(el);
     } else {
-      textNodeContainer.children[i].innerHTML = data[i].waterLevel.toString();
+      // textNodeContainer.children[i].innerHTML = data[i].waterLevel.toString();
+      textNodeContainer.children[i].children[0].innerHTML =
+        "Wamo " + (Number(i) + 1);
+      textNodeContainer.children[i].children[1].innerHTML =
+        "water lvl: " + data[i].waterLevel.toString();
+      // textNodeContainer.children[i].children[2].style.backroundColor =
+      //   data[i].waterLevelState.toString();
+      // console.log(data[i].waterLevelState.toString());
+      // console.log(textNodeContainer.children[i].children[2]);
+      // textNodeContainer.children[i].children[0].innerHTML =
+      // "vamo: " + data[i].waterLevel.toString();
       // console.log(textNodeContainer.children.length);
     }
     // for (let i = 0; i < textNodeContainer.children.length; i++) {
