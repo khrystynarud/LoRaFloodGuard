@@ -25,7 +25,7 @@
 //   clear();
 //   background(15, 15, 50);
 // }
-const mymap = L.map("mapid").setView([51.505, -0.09], 13);
+const mymap = L.map("mapid").setView([50.13870817817009, 9.132599470135487], 14);
 let token =
   "pk.eyJ1IjoibG9yYXdhbi1lcmF5dGVzdCIsImEiOiJja3ZhdXZ5ejAyMnFqMnRva2h1anNqMW40In0.rP5saP4bocjd04pIpVkIPw";
 
@@ -41,3 +41,14 @@ L.tileLayer(
     accessToken: token,
   }
 ).addTo(mymap);
+
+var icons = ['symbol-green_circle.svg', 'symbol-yellow_circle.svg', 'symbol-red_circle.svg'];
+
+var myIcon = L.icon({
+  iconUrl: icons[1],
+  iconSize: [24, 24],
+  iconAnchor: [12, 40],
+  //popupAnchor: [-3, -76],
+});
+
+L.marker([50.13870817817009, 9.132599470135487], {icon: myIcon}).addTo(mymap);
