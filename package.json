@@ -1,0 +1,19 @@
+{
+  "name": "lorawan-interface",
+  "version": "1.0.0",
+  "description": "lorawan interface",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "yogspace",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "eventemitter": "^0.3.3",
+    "express": "^4.17.1",
+    "fs": "^0.0.1-security",
+    "http": "^0.0.1-security",
+    "path": "^0.12.7"
+  }
+}
