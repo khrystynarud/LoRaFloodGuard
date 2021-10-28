@@ -7,7 +7,7 @@ const app = express();
 const myEmitter = new EventEmitter();
 
 let vamos;
-let pathToFile = "./src/vamos.JSON";
+let pathToFile = "./src/vamos.json";
 
 function getDataFromVamo() {
   //read the file
