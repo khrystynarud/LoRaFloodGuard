@@ -72,6 +72,13 @@ function showData(data) {
       );
       textNodeContainer.children[i].children[1].innerHTML =
         "water lvl: " + data[i].waterLevel.toString();
+
+      textNodeContainer.children[i].children[2].children[0].title =
+        data[i].waterLevelState.toString();
+      textNodeContainer.children[
+        i
+      ].children[2].children[0].style.backgroundColor =
+        data[i].waterLevelState.toString();
     }
   }
 }

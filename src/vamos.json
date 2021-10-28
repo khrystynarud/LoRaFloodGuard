@@ -9,7 +9,7 @@
     "rtkStatus": "00",
     "StationId": "0001",
     "waterLevel": "137.282",
-    "waterLevelState": "yellow"
+    "waterLevelState": "green"
   },
   {
     "rtkStatus": "00",
