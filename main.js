@@ -9,6 +9,7 @@ const myEmitter = new EventEmitter();
 let vamos;
 let pathToFile = "./src/vamos.json";
 
+
 function getDataFromVamo() {
   //read the file
   fs.readFile(pathToFile, (err, data) => {
