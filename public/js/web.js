@@ -60,6 +60,8 @@ function showData(data) {
     el.appendChild(elWaterLvl);
     el.appendChild(elWaterLvlStateContainer);
 
+    changeVamoMarkers(data);
+
     if (textNodeContainer.children.length < data.length) {
       textNodeContainer.appendChild(el);
     } else if (textNodeContainer.children.length > data.length) {

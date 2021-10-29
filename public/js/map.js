@@ -27,37 +27,29 @@ L.tileLayer(
   }
 ).addTo(mymap);
 
-
 let pathToPositions = "./src/positions.json";
-
 
 var marker = new Array();
 
-  
 function deleteMarker() {
-  for(i=0;i<marker.length;i++) {
-      map.removeLayer(marker[i]);
-    }  
+  for (i = 0; i < marker.length; i++) {
+    mymap.removeLayer(marker[i]);
+  }
 }
 
 function changeVamoMarkers(vamos) {
-  //deleteMarker();
+  deleteMarker();
   for (let i in vamos) {
     lat = vamos[i].latitude;
     lon = vamos[i].longitude;
-    color =  vamos[i].waterLevelState.toString();
-    //var vamoMarker = new L.circleMarker([lat, lon], {color: 'black', opacity: 1.0, fillColor: color, fillOpacity: 1.0})
-    var vamoMarker = new L.circleMarker([50.138633, 9.153963], {color: 'black', opacity: 1.0, fillColor: 'red', fillOpacity: 1.0}).addTo(map)
+    color = vamos[i].waterLevelState.toString();
+    var vamoMarker = new L.circleMarker([lat, lon], {
+      color: "black",
+      opacity: 1.0,
+      fillColor: color,
+      fillOpacity: 1.0,
+    });
     marker.push(vamoMarker);
-    //map.addLayer(vamoMarker);
-  } 
-
-
-//{
-  //"0": { "latitude": 50.138633, "longitude": 9.153963},
-  //"1": { "latitude": 50.143919, "longitude": 9.171477},
-  //"2": { "latitude": 50.135674, "longitude": 9.168664},
-  //"3": { "latitude": 50.131906, "longitude": 9.157473}, 
-  //"4": { "latitude": 50.146768, "longitude": 9.141005}
-//}
+    mymap.addLayer(vamoMarker);
+  }
 }

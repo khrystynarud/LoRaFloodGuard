@@ -3,14 +3,6 @@
     "rtkStatus": "00",
     "StationId": "0001",
     "waterLevel": "11.282",
-    "waterLevelState": "yellow",
-    "latitude": 50.138633,
-    "longitude": 9.153963
-  },
-  {
-    "rtkStatus": "00",
-    "StationId": "0001",
-    "waterLevel": "137.282",
     "waterLevelState": "green",
     "latitude": 50.138633,
     "longitude": 9.153963
@@ -19,9 +11,16 @@
     "rtkStatus": "00",
     "StationId": "0001",
     "waterLevel": "137.282",
-    "waterLevelState": "yellow",
-    "latitude": 50.138633,
-    "longitude": 9.153963
+    "waterLevelState": "orange",
+    "latitude": 50.146768,
+    "longitude": 9.141005
+  },
+  {
+    "rtkStatus": "00",
+    "StationId": "0001",
+    "waterLevel": "137.282",
+    "waterLevelState": "red",
+    "latitude": 50.135674,
+    "longitude": 9.168664
   }
 ]
-
