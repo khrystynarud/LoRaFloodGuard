@@ -3,27 +3,46 @@ const express = require("express");
 const path = require("path");
 const fs = require("fs");
 const WebSocketServer = require("websocket").server;
-const http = require("http");
-
+const https = require("https");
 const app = express();
 const myEmitter = new EventEmitter();
 
-let vamos;
-let pathToFile = "./src/vamos.json";
+let stat = process.argv[2];
+// console.log(stat);
 
+let hostName = "https://waterlevelwamo.herokuapp.com";
 
-function getDataFromVamo() {
-  //read the file
-  fs.readFile(pathToFile, (err, data) => {
-    if (err) {
-      throw err;
-    } else {
-      //turn json into js object
-      data = JSON.parse(data.toString());
-      //save the data as vamos
-      vamos = data;
-    }
-  });
+let wamos;
+let pathToFile = "./src/wamos.json";
+
+function getDataFromWamo(stat) {
+  if (stat === "demo") {
+    //read the file
+    fs.readFile(pathToFile, (err, data) => {
+      if (err) {
+        throw err;
+      } else {
+        //turn json into js object
+        data = JSON.parse(data.toString());
+        //save the data as wamos
+        wamos = data;
+      }
+    });
+  } else {
+    let req = https.request(hostName, (res, rej) => {
+      res.on("data", (d) => {
+        // process.stdout.write(d);
+        console.log(d.toString());
+        wamos = d.toString();
+      });
+    });
+
+    req.on("error", (error) => {
+      console.error(error);
+    });
+
+    req.end();
+  }
 }
 
 function getDataFromHTML(data) {
@@ -36,7 +55,9 @@ function getDataFromHTML(data) {
 }
 
 //get the
-let dataInterval = setInterval(getDataFromVamo, 1000);
+let dataInterval = setInterval(() => {
+  getDataFromWamo(stat);
+}, 1000);
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
@@ -48,7 +69,7 @@ app.get("/", (req, res) => {
 
 //send the data to the HTML DOM
 app.get("/data", (req, res) => {
-  res.send(vamos);
+  res.send(wamos);
 });
 
 //if something comes back

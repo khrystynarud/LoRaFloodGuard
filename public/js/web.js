@@ -6,6 +6,8 @@ let waterLevelStateDescriptionBox = document.getElementById(
 );
 let textNodeContainer = document.getElementById("textNodeContainer");
 
+let wamoArray = [];
+
 function getData() {
   //every second the html Content will be updated
   setInterval(async () => {
@@ -16,6 +18,7 @@ function getData() {
       return;
     }
     const data = await response.json();
+    console.log(data.waterLevel);
     updateHTML(data);
   }, 1000);
 }
@@ -28,7 +31,10 @@ async function updateHTML(data) {
       break;
     default:
       //do something with the data
-      showData(data);
+      if (!wamoArray.includes(data)) {
+        wamoArray.push(data);
+      }
+      showData(wamoArray);
       //send something back?
       // let obj = {
       //   name: "daten lol",
@@ -46,21 +52,22 @@ function showData(data) {
     let elWaterLvlStateContainer = document.createElement("div");
     let elWaterLvlState = document.createElement("div");
 
-    elName.innerHTML = "no vamo";
-    elWaterLvl.innerHTML = "water lvl:";
+    elName.innerHTML = "no wamo";
+    elWaterLvl.innerHTML = "water level:";
 
-    el.classList.add("vamo-container");
-    elName.classList.add("vamo-container-headline");
-    elWaterLvl.classList.add("vamo-container-text");
-    elWaterLvlStateContainer.classList.add("vamo-container-waterlvl-container");
-    elWaterLvlState.classList.add("vamo-container-waterlvl");
+    el.classList.add("wamo-container");
+    elName.classList.add("wamo-container-headline");
+    elWaterLvl.classList.add("wamo-container-text");
+    elWaterLvlStateContainer.classList.add("wamo-container-waterlvl-container");
+    elWaterLvlState.classList.add("wamo-container-waterlvl");
 
     elWaterLvlStateContainer.appendChild(elWaterLvlState);
     el.appendChild(elName);
     el.appendChild(elWaterLvl);
     el.appendChild(elWaterLvlStateContainer);
 
-    changeVamoMarkers(data);
+    // console.log(data[i]);
+    changeWamoMarkers(data);
 
     if (textNodeContainer.children.length < data.length) {
       textNodeContainer.appendChild(el);
@@ -73,11 +80,11 @@ function showData(data) {
       textNodeContainer.children[i].children[0].addEventListener(
         "click",
         () => {
-          goToVamo(i);
+          goTowamo(i);
         }
       );
       textNodeContainer.children[i].children[1].innerHTML =
-        "water lvl: " + data[i].waterLevel.toString();
+        "water level: " + data[i].waterLevel.toString();
 
       textNodeContainer.children[i].children[2].children[0].title =
         data[i].waterLevelState.toString();
@@ -113,9 +120,9 @@ function displayWaterLevelStateDescription(state) {
   console.log(waterLevelStateDescriptionBox);
   // console.log(state);
 }
-function goToVamo(id) {
+function goTowamo(id) {
   console.log(id);
-  //the map routes to the vamo with the following id
+  //the map routes to the wamo with the following id
 }
 
 async function sendBack(json) {
