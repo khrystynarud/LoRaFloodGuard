@@ -37,19 +37,19 @@ function deleteMarker() {
   }
 }
 
-function changeVamoMarkers(vamos) {
+function changeWamoMarkers(wamos) {
   deleteMarker();
-  for (let i in vamos) {
-    lat = vamos[i].latitude;
-    lon = vamos[i].longitude;
-    color = vamos[i].waterLevelState.toString();
-    var vamoMarker = new L.circleMarker([lat, lon], {
+  for (let i in wamos) {
+    lat = wamos[i].latitude;
+    lon = wamos[i].longitude;
+    color = wamos[i].waterLevelState.toString();
+    var wamoMarker = new L.circleMarker([lat, lon], {
       color: "black",
       opacity: 1.0,
       fillColor: color,
       fillOpacity: 1.0,
     });
-    marker.push(vamoMarker);
-    mymap.addLayer(vamoMarker);
+    marker.push(wamoMarker);
+    mymap.addLayer(wamoMarker);
   }
 }
