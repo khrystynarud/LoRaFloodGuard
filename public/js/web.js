@@ -1,9 +1,9 @@
 let dataArray = [];
 let textArray = [];
-let waterLevelStateDescriptionState = "close";
 let waterLevelStateDescriptionBox = document.getElementById(
   "waterLevelStateDescriptionBox"
 );
+let weatherDescriptionBox = document.getElementById("weatherDescriptionBox");
 let textNodeContainer = document.getElementById("textNodeContainer");
 
 // let wamoArray = [];
@@ -25,7 +25,7 @@ getData();
 
 function getWeather() {
   setInterval(async () => {
-    const response = await fetch("/data", { method: "GET" });
+    const response = await fetch("/weather", { method: "GET" });
     let isContentEmpty = response.headers.get("Content-Length") === "0";
     if (isContentEmpty) {
       updateHTML("no-content");
@@ -35,15 +35,37 @@ function getWeather() {
     setWeather(weatherData);
   }, 5000);
 }
-// getWeather();
+getWeather();
+// setWeather();
 
 function setWeather(weather) {
-  weather.current.temp_c;
-  weather.wind_kph;
-  weather.precip_mm;
-  weather.humidity;
-  weather.cloud;
-  weather.vis_km;
+  document.getElementById("closeWeather").onclick = () => {
+    weatherDescriptionBox.state = "open";
+    displayDescriptionElement(weatherDescriptionBox);
+  };
+  // console.log(weather);
+  document.getElementsByClassName(
+    "weather-description-container"
+  )[0].innerHTML =
+    "<p>Temp: " +
+    weather.current.temp_c +
+    "°C</p>\n<p>Wind :" +
+    weather.current.wind_kph +
+    "km/h</p>\n<p>Niederschlag: " +
+    weather.current.precip_mm +
+    "mm</p>\n<p>Feuchtigkeit: " +
+    weather.current.humidity +
+    "</p>\n<p>Bewölkung: " +
+    weather.current.cloud +
+    "%</p>\n<p>Sichtweite:" +
+    weather.current.vis_km +
+    "km</p>";
+  // weather.current.temp_c;
+  // weather.wind_kph;
+  // weather.precip_mm;
+  // weather.humidity;
+  // weather.cloud;
+  // weather.vis_km;
 }
 
 async function updateHTML(data) {
@@ -115,30 +137,29 @@ function showData(data) {
         data[i].waterLevelState.toString();
       for (j in textNodeContainer.children[i].children[2].children) {
         textNodeContainer.children[i].children[2].children[j].onclick = () => {
-          displayWaterLevelStateDescription(waterLevelStateDescriptionState);
+          displayDescriptionElement(waterLevelStateDescriptionBox);
         };
       }
       document.getElementById("closeStatus").onclick = () => {
-        displayWaterLevelStateDescription("open");
+        waterLevelStateDescriptionBox.state = "open";
+        displayDescriptionElement(waterLevelStateDescriptionBox);
       };
     }
   }
 }
 
-function displayWaterLevelStateDescription(state) {
-  if (state === "open") {
-    // waterLevelStateDescriptionBox.style.display = "none";
-    waterLevelStateDescriptionBox.classList.remove("show");
-    waterLevelStateDescriptionBox.classList.add("hide");
+function displayDescriptionElement(obj) {
+  if (obj.state === "open") {
+    obj.classList.remove("show");
+    obj.classList.add("hide");
 
-    waterLevelStateDescriptionState = "close";
+    obj.state = "close";
   } else {
-    waterLevelStateDescriptionState = "open";
-    // waterLevelStateDescriptionBox.style.display = "inherit";
-    waterLevelStateDescriptionBox.classList.remove("hide");
-    waterLevelStateDescriptionBox.classList.add("show");
+    obj.state = "open";
+    obj.classList.remove("hide");
+    obj.classList.add("show");
   }
-  console.log(waterLevelStateDescriptionBox);
+  // console.log(obj);
   // console.log(state);
 }
 function goTowamo(id) {
