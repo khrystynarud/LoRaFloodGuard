@@ -49,7 +49,10 @@ function changeWamoMarkers(wamos) {
       fillColor: color,
       fillOpacity: 1.0,
     });
-    marker.push(wamoMarker);
-    mymap.addLayer(wamoMarker);
+    marker.push(vamoMarker);
+    vamoMarker.on('click', function(e){
+      mymap.setView([e.latlng.lat, e.latlng.lng], 25);
+    });
+    mymap.addLayer(vamoMarker);
   }
 }
