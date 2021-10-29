@@ -99,6 +99,7 @@ body {
   width: 100vw;
   top: 0px;
   left: 0px;
+  pointer-events: none;
   /* background-color: blue; */
 }
 .description-element {
@@ -114,6 +115,7 @@ body {
   min-height: 100px;
   height: min-content;
   position: relative;
+  pointer-events: auto;
 }
 .description-text {
   margin: 0px;

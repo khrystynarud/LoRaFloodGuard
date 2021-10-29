@@ -49,15 +49,15 @@ function setWeather(weather) {
   )[0].innerHTML =
     "<p>Temp: " +
     weather.current.temp_c +
-    "°C</p>\n<p>Wind :" +
+    "°C</p>\n<p>Wind: " +
     weather.current.wind_kph +
     "km/h</p>\n<p>Niederschlag: " +
     weather.current.precip_mm +
     "mm</p>\n<p>Feuchtigkeit: " +
     weather.current.humidity +
-    "</p>\n<p>Bewölkung: " +
+    "%</p>\n<p>Bewölkung: " +
     weather.current.cloud +
-    "%</p>\n<p>Sichtweite:" +
+    "%</p>\n<p>Sichtweite: " +
     weather.current.vis_km +
     "km</p>";
   // weather.current.temp_c;
