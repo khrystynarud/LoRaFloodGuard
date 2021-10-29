@@ -118,7 +118,7 @@ function showData(data) {
           displayWaterLevelStateDescription(waterLevelStateDescriptionState);
         };
       }
-      document.getElementsByClassName("close-btn")[0].onclick = () => {
+      document.getElementsById("closeStatus").onclick = () => {
         displayWaterLevelStateDescription("open");
       };
     }

@@ -43,16 +43,16 @@ function changeWamoMarkers(wamos) {
     lat = wamos[i].latitude;
     lon = wamos[i].longitude;
     color = wamos[i].waterLevelState.toString();
-    var wamoMarker = new L.circleMarker([lat, lon], {
+    let wamoMarker = new L.circleMarker([lat, lon], {
       color: "black",
       opacity: 1.0,
       fillColor: color,
       fillOpacity: 1.0,
     });
-    marker.push(vamoMarker);
-    vamoMarker.on('click', function(e){
+    marker.push(wamoMarker);
+    wamoMarker.on("click", function (e) {
       mymap.setView([e.latlng.lat, e.latlng.lng], 25);
     });
-    mymap.addLayer(vamoMarker);
+    mymap.addLayer(wamoMarker);
   }
 }
