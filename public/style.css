@@ -6,7 +6,7 @@ body {
 }
 .content-container {
   display: grid;
-  grid-template-columns: auto auto auto auto;
+  grid-template-columns: auto auto auto minmax(200px, 400px);
   grid-template-rows: auto auto auto min-content;
   margin: 0px;
   padding: 0px;
@@ -36,14 +36,13 @@ body {
   width: 100%;
   z-index: 2;
   display: grid;
-  grid-template-rows: auto;
-  grid-template-columns: auto;
-  grid-auto-rows: auto;
-  grid-auto-columns: auto;
+  grid-template-rows: auto auto;
+  grid-template-columns: 25% 25% auto;
+  /* grid-auto-rows: auto;
+  grid-auto-columns: auto; */
   grid-gap: 5px;
   flex-direction: row;
-  overflow-x: hidden;
-  overflow-y: auto;
+  overflow: hidden;
 }
 .bottom-container-right-button {
   border-radius: 10px;
