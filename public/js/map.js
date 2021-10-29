@@ -14,13 +14,15 @@ streets = [
   "mapbox/dark-v10",
   "lorawan-eraytest/ckvc60hx508t714l8pg69tz1u",
 ];
-L.tileLayer(
+let currentStyle = 3;
+
+let currentLayer = L.tileLayer(
   "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}",
   {
     attribution:
       'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
     maxZoom: 18,
-    id: streets[3],
+    id: streets[currentStyle],
     tileSize: 512,
     zoomOffset: -1,
     accessToken: token,
@@ -55,4 +57,28 @@ function changeWamoMarkers(wamos) {
     });
     mymap.addLayer(wamoMarker);
   }
+}
+
+function changeLayer() {
+  currentStyle++;
+  if (currentStyle > streets.length - 1) {
+    currentStyle = 0;
+  }
+  mymap.removeLayer(currentLayer);
+  currentLayer = L.tileLayer(
+    "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}",
+    {
+      attribution:
+        'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+      maxZoom: 18,
+      id: streets[currentStyle],
+      tileSize: 512,
+      zoomOffset: -1,
+      accessToken: token,
+    }
+  ).addTo(mymap);
+}
+
+function resetZoom() {
+  mymap.setView([50.13870817817009, 9.132599470135487], 14.1);
 }

@@ -19,6 +19,29 @@
     <div class="content-container">
       <div id="mapid" class="map-container"></div>
       <div id="textNodeContainer" class="bottom-container"></div>
+      <div id="textNodeContainer" class="bottom-container-right">
+        <button
+          id="weatherBtn"
+          class="bottom-container-right-button weather-btn btn"
+        >
+          Wetter anzeigen
+        </button>
+        <button
+          id="changeMapBtn"
+          class="bottom-container-right-button btn1 btn"
+        >
+          Ansicht wechseln
+        </button>
+        <button
+          id="resetZoomBtn"
+          class="bottom-container-right-button btn2 btn"
+        >
+          Ansicht zurücksetzen
+        </button>
+        <button class="bottom-container-right-button btn3 btn">anderes</button>
+
+        <button class="bottom-container-right-button alarm-btn">Notfall</button>
+      </div>
     </div>
     <div class="description-container">
       <div
@@ -60,10 +83,13 @@
           </div>
         </div>
       </div>
-      <div id="weatherDescriptionBox" class="description-element">
+      <div
+        id="weatherDescriptionBox"
+        class="weather-description-container description-element hide"
+      >
         <div class="description-headline">Wetter</div>
         <div id="closeWeather" class="close-btn">&times</div>
-        <div class="weather-description-container"></div>
+        <div class="weather-description-element-container"></div>
       </div>
     </div>
     <script type="text/javascript" src="/js/map.js"></script>

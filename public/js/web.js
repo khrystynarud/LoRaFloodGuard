@@ -4,9 +4,18 @@ let waterLevelStateDescriptionBox = document.getElementById(
   "waterLevelStateDescriptionBox"
 );
 let weatherDescriptionBox = document.getElementById("weatherDescriptionBox");
+let weatherBtn = document.getElementById("weatherBtn");
+let changeMapBtn = document.getElementById("changeMapBtn");
+let resetZoomBtn = document.getElementById("resetZoomBtn");
 let textNodeContainer = document.getElementById("textNodeContainer");
 
 // let wamoArray = [];
+changeMapBtn.onclick = () => {
+  changeLayer();
+};
+resetZoomBtn.onclick = () => {
+  resetZoom();
+};
 
 function getData() {
   //every second the html Content will be updated
@@ -33,10 +42,12 @@ function getWeather() {
     }
     const weatherData = await response.json();
     setWeather(weatherData);
-  }, 5000);
+  }, 1000);
 }
 getWeather();
-// setWeather();
+weatherBtn.addEventListener("click", () => {
+  displayDescriptionElement(weatherDescriptionBox);
+});
 
 function setWeather(weather) {
   document.getElementById("closeWeather").onclick = () => {
@@ -45,7 +56,7 @@ function setWeather(weather) {
   };
   // console.log(weather);
   document.getElementsByClassName(
-    "weather-description-container"
+    "weather-description-element-container"
   )[0].innerHTML =
     "<p>Temp: " +
     weather.current.temp_c +
@@ -60,12 +71,7 @@ function setWeather(weather) {
     "%</p>\n<p>Sichtweite: " +
     weather.current.vis_km +
     "km</p>";
-  // weather.current.temp_c;
-  // weather.wind_kph;
-  // weather.precip_mm;
-  // weather.humidity;
-  // weather.cloud;
-  // weather.vis_km;
+  // console.log(weatherDescriptionBox);
 }
 
 async function updateHTML(data) {
@@ -74,7 +80,7 @@ async function updateHTML(data) {
       //data is empty
       break;
     default:
-      console.log(data);
+      // console.log(data);
       showData(data);
 
       //send something back?
@@ -159,9 +165,8 @@ function displayDescriptionElement(obj) {
     obj.classList.remove("hide");
     obj.classList.add("show");
   }
-  // console.log(obj);
-  // console.log(state);
 }
+
 function goTowamo(id) {
   console.log(id);
   //the map routes to the wamo with the following id
