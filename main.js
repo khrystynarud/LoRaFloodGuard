@@ -7,9 +7,9 @@ const app = express();
 const myEmitter = new EventEmitter();
 
 let stat = process.argv[2];
-// console.log(stat);
 
-let hostName = "https://waterlevelwamo.herokuapp.com";
+const hostNameWamos = "https://waterlevelwamo.herokuapp.com";
+let weatherData;
 
 let wamos;
 let pathToFile = "./src/wamos.json";
@@ -28,11 +28,11 @@ function getDataFromWamo(stat) {
       }
     });
   } else {
-    let req = https.request(hostName, (res, rej) => {
+    let req = https.request(hostNameWamos, (res, rej) => {
       res.on("data", (d) => {
         // process.stdout.write(d);
-        console.log(d.toString());
-        wamos = d.toString();
+        wamos = [JSON.parse(d)];
+        console.log(wamos);
       });
     });
 
@@ -44,19 +44,37 @@ function getDataFromWamo(stat) {
   }
 }
 
-function getDataFromHTML(data) {
-  //print the data that was received by the http-server
+function getWeather(lat, long) {
+  let key = "01f048652761449aac1120721212910";
+  const hostNameWeather = `https://api.weatherapi.com/v1/current.json?key=${key}&q=${lat}, ${long}&aqi=no`;
+  let req = https.request(hostNameWeather, (res, rej) => {
+    res.on("data", (d) => {
+      // process.stdout.write(d);
+      weatherData = JSON.parse(d);
+      console.log(weatherData);
+    });
+  });
 
+  req.on("error", (error) => {
+    console.error(error);
+  });
+
+  req.end();
+}
+
+function getDataFromHTML(data) {
   console.log(data);
-  // setTimeout(() => {
-  //   fs.writeFileSync(pathToFile, JSON.stringify(test));
-  // }, 10000);
 }
 
 //get the
 let dataInterval = setInterval(() => {
   getDataFromWamo(stat);
 }, 1000);
+
+getWeather(50.13870817817009, 9.132599470135487);
+let weatherInterval = setInterval(() => {
+  getWeather(50.13870817817009, 9.132599470135487);
+}, 60000);
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
@@ -69,6 +87,9 @@ app.get("/", (req, res) => {
 //send the data to the HTML DOM
 app.get("/data", (req, res) => {
   res.send(wamos);
+});
+app.get("/weather", (req, res) => {
+  res.send(weatherData);
 });
 
 //if something comes back

@@ -6,7 +6,7 @@ let waterLevelStateDescriptionBox = document.getElementById(
 );
 let textNodeContainer = document.getElementById("textNodeContainer");
 
-let wamoArray = [];
+// let wamoArray = [];
 
 function getData() {
   //every second the html Content will be updated
@@ -18,11 +18,33 @@ function getData() {
       return;
     }
     const data = await response.json();
-    console.log(data.waterLevel);
     updateHTML(data);
   }, 1000);
 }
 getData();
+
+function getWeather() {
+  setInterval(async () => {
+    const response = await fetch("/data", { method: "GET" });
+    let isContentEmpty = response.headers.get("Content-Length") === "0";
+    if (isContentEmpty) {
+      updateHTML("no-content");
+      return;
+    }
+    const weatherData = await response.json();
+    setWeather(weatherData);
+  }, 5000);
+}
+// getWeather();
+
+function setWeather(weather) {
+  weather.current.temp_c;
+  weather.wind_kph;
+  weather.precip_mm;
+  weather.humidity;
+  weather.cloud;
+  weather.vis_km;
+}
 
 async function updateHTML(data) {
   switch (data) {
@@ -30,11 +52,9 @@ async function updateHTML(data) {
       //data is empty
       break;
     default:
-      //do something with the data
-      if (!wamoArray.includes(data)) {
-        wamoArray.push(data);
-      }
-      showData(wamoArray);
+      console.log(data);
+      showData(data);
+
       //send something back?
       // let obj = {
       //   name: "daten lol",
@@ -67,6 +87,7 @@ function showData(data) {
     el.appendChild(elWaterLvlStateContainer);
 
     // console.log(data[i]);
+    // console.log(data);
     changeWamoMarkers(data);
 
     if (textNodeContainer.children.length < data.length) {
