@@ -16,9 +16,43 @@
     ></script>
   </head>
   <body>
-    <div id="mapid" class="map-container"></div>
-    <div id="textNodeContainer" class="bottom-container"></div>
-
+    <div class="content-container">
+      <div id="mapid" class="map-container"></div>
+      <div id="textNodeContainer" class="bottom-container"></div>
+    </div>
+    <div class="description-container">
+      <div
+        id="waterLevelStateDescriptionBox"
+        class="water-level-state-description-box description-element"
+      >
+        <div class="description-headline">Status</div>
+        <div class="close-btn">&times</div>
+        <div
+          class="
+            water-level-state-description-green-container
+            water-level-state-desription-dot-container
+          "
+        >
+          <div class="water-level-state-description-green-dot dot"></div>
+        </div>
+        <div
+          class="
+            water-level-state-description-orange-container
+            water-level-state-desription-dot-container
+          "
+        >
+          <div class="water-level-state-description-orange-dot dot"></div>
+        </div>
+        <div
+          class="
+            water-level-state-description-red-container
+            water-level-state-desription-dot-container
+          "
+        >
+          <div class="water-level-state-description-red-dot dot"></div>
+        </div>
+      </div>
+    </div>
     <script type="text/javascript" src="/js/map.js"></script>
     <script type="text/javascript" src="/js/web.js"></script>
   </body>

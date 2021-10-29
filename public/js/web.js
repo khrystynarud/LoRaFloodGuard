@@ -1,5 +1,9 @@
 let dataArray = [];
 let textArray = [];
+let waterLevelStateDescriptionState = "close";
+let waterLevelStateDescriptionBox = document.getElementById(
+  "waterLevelStateDescriptionBox"
+);
 let textNodeContainer = document.getElementById("textNodeContainer");
 
 function getData() {
@@ -79,11 +83,31 @@ function showData(data) {
         i
       ].children[2].children[0].style.backgroundColor =
         data[i].waterLevelState.toString();
+      for (j in textNodeContainer.children[i].children[2].children) {
+        textNodeContainer.children[i].children[2].children[j].onclick = () => {
+          displayWaterLevelStateDescription(waterLevelStateDescriptionState);
+        };
+      }
+      document.getElementsByClassName("close-btn")[0].onclick = () => {
+        displayWaterLevelStateDescription("open");
+      };
     }
   }
 }
 
+function displayWaterLevelStateDescription(state) {
+  if (state === "open") {
+    waterLevelStateDescriptionBox.style.display = "none";
+    waterLevelStateDescriptionState = "close";
+  } else {
+    waterLevelStateDescriptionState = "open";
+    waterLevelStateDescriptionBox.style.display = "inherit";
+  }
+  // console.log(waterLevelStateDescriptionBox);
+  // console.log(state);
+}
 function goToVamo(id) {
+  console.log(id);
   //the map routes to the vamo with the following id
 }
 
