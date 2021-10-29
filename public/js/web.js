@@ -97,13 +97,18 @@ function showData(data) {
 
 function displayWaterLevelStateDescription(state) {
   if (state === "open") {
-    waterLevelStateDescriptionBox.style.display = "none";
+    // waterLevelStateDescriptionBox.style.display = "none";
+    waterLevelStateDescriptionBox.classList.remove("show");
+    waterLevelStateDescriptionBox.classList.add("hide");
+
     waterLevelStateDescriptionState = "close";
   } else {
     waterLevelStateDescriptionState = "open";
-    waterLevelStateDescriptionBox.style.display = "inherit";
+    // waterLevelStateDescriptionBox.style.display = "inherit";
+    waterLevelStateDescriptionBox.classList.remove("hide");
+    waterLevelStateDescriptionBox.classList.add("show");
   }
-  // console.log(waterLevelStateDescriptionBox);
+  console.log(waterLevelStateDescriptionBox);
   // console.log(state);
 }
 function goToVamo(id) {
