@@ -133,7 +133,9 @@ function showData(data) {
         }
       );
       textNodeContainer.children[i].children[1].innerHTML =
-        "water level: " + data[i].waterLevel.toString();
+        "water level: " +
+        Number(data[i].waterLevel).toFixed(2).toString() +
+        "m AMSL";
 
       textNodeContainer.children[i].children[2].children[0].title =
         data[i].waterLevelState.toString();
